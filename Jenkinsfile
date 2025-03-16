@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     MAJOR_VERSION = 1
+    APACHE_HOST_IP = 54.242.139.241
   }
 
   stages {
@@ -42,7 +43,7 @@ pipeline {
         label 'centos'
       }
       steps {
-        sh "wget http://b306bc7dc42c.mylabserver.com//rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
+        sh "wget http://${env.APACHE_HOST_IP}/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
@@ -51,7 +52,7 @@ pipeline {
         docker 'openjdk:11.0.16-jre'
       }
       steps {
-        sh "wget http://b306bc7dc42c.mylabserver.com//rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
+        sh "wget http://${env.APACHE_HOST_IP}/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
