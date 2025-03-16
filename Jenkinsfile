@@ -49,7 +49,7 @@ pipeline {
     }
     stage("Test on Debian") {
       agent {
-        docker 'openjdk:11.0.16-jre'
+        docker 'eclipse-temurin:17-jre'
       }
       steps {
         sh "wget http://${APACHE_HOST_IP}/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar"
